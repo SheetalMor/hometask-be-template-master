@@ -4,20 +4,31 @@ const addMoneyToProfileBalance = async (depositAmount, clientId) => {
     return await sequelize.transaction(async (t) => {
         const client = await Profile.findOne({
             where: { id: clientId},
-        })
+        });
+        const jobQueryCondition = {
+            paid: { [Op.not]: true},
+            '$Contract.ClientId$': clientId,
+        };
         const jobsToPay = await Job.findAll({
-            where: {
-                paid: { [Op.not]: true},
-                '$Contract.ClientId$': clientId,
-            },
+            where: jobQueryCondition,
             include: [
-                {model: Contract}
-            ]
+                {model: Contract},
+            ],
+            attributes: {
+                include: [
+                    [ sequelize.literal('(SELECT SUM(price) FROM Jobs)'), 'sumOfPrice' ]
+                ]
+            }
         }, { transaction: t });
+        const totalPriceToPayForJobs = await Job.sum('price', { 
+                where: jobQueryCondition, 
+                include: [
+                    {model: Contract},
+                ],
+            }, { transaction: t });
 
         if(!client || !jobsToPay) throw new Error('No data found');
 
-        let totalPriceToPayForJobs = jobsToPay.reduce((jobB, jobA) => jobB.price + jobA.price, 0);
         if (depositAmount > 0.25*totalPriceToPayForJobs) throw new Error('You can only deposit 25% of total price of jobs to be paid');
 
         await Profile.update({

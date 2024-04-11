@@ -61,7 +61,8 @@ app.post('/jobs/:job_id/pay', getProfile, async (req, res) => {
  * @returns Adds money to client account with one time limit not exceeding 25% of total amount pending to be paid for all jobs
  */
 app.post('/balances/deposit/:userId', getProfile, async (req, res) => {
-    const clientId = req.params.userId;
+    const clientId = Number(req.params.userId);
+    if (req.profile.id !== clientId) return res.status(403).end();
     const depositAmount = parseFloat(req.body.deposit || 0);
     if (depositAmount <= 0) return res.status(400).end();
 
