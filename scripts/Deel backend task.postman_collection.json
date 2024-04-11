@@ -135,7 +135,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"deposit\": 4\n}",
+					"raw": "{\n    \"deposit\": 350\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -157,12 +157,97 @@
 					"variable": [
 						{
 							"key": "userId",
-							"value": "4"
+							"value": "1"
 						}
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "http://localhost:3001/balances/deposit/:userId",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "profile_id",
+								"value": "3",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"deposit\": 350\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/balances/deposit/:userId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"balances",
+								"deposit",
+								":userId"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Origin, X-Requested-With, Content-Type, Accept"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "9"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"9-a/KLvPqoHbaBaqcqtedhpw4HCr0\""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 11 Apr 2024 07:49:03 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "\"Success\""
+				}
+			]
 		},
 		{
 			"name": "http://localhost:3001/admin/best-profession",
@@ -176,7 +261,7 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:3001/admin/best-profession?start=2000-08-15&end=2024-08-15",
+					"raw": "http://localhost:3001/admin/best-profession?start=2019-08-15 19:11:26.737&end=2021-08-15 19:11:26.737",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -189,16 +274,95 @@
 					"query": [
 						{
 							"key": "start",
-							"value": "2000-08-15"
+							"value": "2019-08-15 19:11:26.737"
 						},
 						{
 							"key": "end",
-							"value": "2024-08-15"
+							"value": "2021-08-15 19:11:26.737"
 						}
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "http://localhost:3001/admin/best-profession",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "profile_id",
+								"value": "2",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3001/admin/best-profession?start=2019-08-15 19:11:26.737&end=2021-08-15 19:11:26.737",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"admin",
+								"best-profession"
+							],
+							"query": [
+								{
+									"key": "start",
+									"value": "2019-08-15 19:11:26.737"
+								},
+								{
+									"key": "end",
+									"value": "2021-08-15 19:11:26.737"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Origin, X-Requested-With, Content-Type, Accept"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "12"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"c-+H9axKOSvJiACxkgC7qNtWCh7Iw\""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 11 Apr 2024 08:43:36 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "\"Programmer\""
+				}
+			]
 		},
 		{
 			"name": "http://localhost:3001/admin/best-clients",
@@ -207,7 +371,7 @@
 				"header": [
 					{
 						"key": "profile_id",
-						"value": "2",
+						"value": "1",
 						"type": "text"
 					}
 				],
@@ -238,7 +402,90 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "http://localhost:3001/admin/best-clients",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "profile_id",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3001/admin/best-clients?start=2000-08-15&end=2024-08-15&limit=3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"admin",
+								"best-clients"
+							],
+							"query": [
+								{
+									"key": "start",
+									"value": "2000-08-15"
+								},
+								{
+									"key": "end",
+									"value": "2024-08-15"
+								},
+								{
+									"key": "limit",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Origin, X-Requested-With, Content-Type, Accept"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "110"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"6e-2ETlA4QMWsog5UDs8iimejbWQs8\""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 11 Apr 2024 08:45:38 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"paid\": 2020,\n        \"id\": 4,\n        \"name\": \"Kethcum\"\n    },\n    {\n        \"paid\": 442,\n        \"id\": 2,\n        \"name\": \"Robot\"\n    },\n    {\n        \"paid\": 442,\n        \"id\": 1,\n        \"name\": \"Potter\"\n    }\n]"
+				}
+			]
 		}
 	]
 }
