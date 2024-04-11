@@ -62,8 +62,8 @@ app.post('/jobs/:job_id/pay', getProfile, async (req, res) => {
  */
 app.post('/balances/deposit/:userId', getProfile, async (req, res) => {
     const clientId = req.params.userId;
-    const depositAmount = parseInt(req.body.deposit || 0);
-    if (depositAmount < 1) return res.status(402).end();
+    const depositAmount = parseFloat(req.body.deposit || 0);
+    if (depositAmount <= 0) return res.status(400).end();
 
     await balancesControllers.addMoneyToProfileBalance(depositAmount, clientId)
         .then(() => res.json('Success'))
@@ -77,7 +77,7 @@ app.post('/balances/deposit/:userId', getProfile, async (req, res) => {
  */
 app.get('/admin/best-profession', getProfile, async (req, res) => {
     const {start, end} = req.query;
-    if (!start || !end) return res.status(402).end();
+    if (!start || !end) return res.status(400).end();
     await adminControllers.getBestProfessionByDate(decodeURIComponent(start), decodeURIComponent(end))
         .then(bestProfession => res.json(bestProfession))
         .catch(err => {
@@ -90,7 +90,7 @@ app.get('/admin/best-profession', getProfile, async (req, res) => {
  */
 app.get('/admin/best-clients', getProfile, async (req, res) =>{
     const {start, end, limit} = req.query;
-    if (!start || !end) return res.status(402).end();
+    if (!start || !end) return res.status(400).end();
     await adminControllers.getBestClientsByDateAndLimit(decodeURIComponent(start), decodeURIComponent(end), limit)
         .then(bestClients => res.json(bestClients))
         .catch(err => {

@@ -5,7 +5,6 @@ const getAllUnpaidJobs = async (user) => {
     const jobs = await Job.findAll({
         where: {
             '$Contract.status$': 'in_progress',
-            paid: { [Op.not]: true},
             [userQuery]: user.id,
         },
         include: [

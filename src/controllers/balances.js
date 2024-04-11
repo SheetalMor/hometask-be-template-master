@@ -21,7 +21,7 @@ const addMoneyToProfileBalance = async (depositAmount, clientId) => {
         if (depositAmount > 0.25*totalPriceToPayForJobs) throw new Error('You can only deposit 25% of total price of jobs to be paid');
 
         await Profile.update({
-            balance: client.balance + parseInt(depositAmount)
+            balance: client.balance + parseFloat(depositAmount)
         }, {
             where: {id: clientId},
             transaction: t
