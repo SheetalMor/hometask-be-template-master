@@ -3,8 +3,8 @@ const {Job, Contract, Profile, sequelize, Op} = require('./../model');
 const getBestProfessionByDate = async (start, end) => {
     const bestJob = await Job.findAll({
         where: {
-            paid: { [Op.not]: true},
-            paymentDate: { [Op.between]: [new Date(start), new Date(end)]}
+            paid: true,
+            paymentDate: { [Op.between]: [new Date(start).toISOString(), new Date(end).toISOString()]}
         },
         attributes: [[sequelize.fn('sum', sequelize.col('price')), 'total_amount'], 'Contract->Contractor.profession'],
         include: [
@@ -20,8 +20,8 @@ const getBestProfessionByDate = async (start, end) => {
 const getBestClientsByDateAndLimit = async (start, end, limit = 2) => {
     const bestClients = await Job.findAll({
         where: {
-            paid: { [Op.not]: true},
-            paymentDate: { [Op.between]: [new Date(start), new Date(end)]}
+            paid: true,
+            paymentDate: { [Op.between]: [new Date(start).toISOString(), new Date(end).toISOString()]}
         },
         attributes: [
             [sequelize.fn('sum', sequelize.col('price')), 'paid'], 

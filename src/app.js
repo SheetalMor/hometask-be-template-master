@@ -78,7 +78,7 @@ app.post('/balances/deposit/:userId', getProfile, async (req, res) => {
 app.get('/admin/best-profession', getProfile, async (req, res) => {
     const {start, end} = req.query;
     if (!start || !end) return res.status(402).end();
-    await adminControllers.getBestProfessionByDate(start, end)
+    await adminControllers.getBestProfessionByDate(decodeURIComponent(start), decodeURIComponent(end))
         .then(bestProfession => res.json(bestProfession))
         .catch(err => {
             res.status(422).send({error: err.toString()}).end();
@@ -91,7 +91,7 @@ app.get('/admin/best-profession', getProfile, async (req, res) => {
 app.get('/admin/best-clients', getProfile, async (req, res) =>{
     const {start, end, limit} = req.query;
     if (!start || !end) return res.status(402).end();
-    await adminControllers.getBestClientsByDateAndLimit(start, end, limit)
+    await adminControllers.getBestClientsByDateAndLimit(decodeURIComponent(start), decodeURIComponent(end), limit)
         .then(bestClients => res.json(bestClients))
         .catch(err => {
             res.status(422).send({error: err.toString()}).end();
